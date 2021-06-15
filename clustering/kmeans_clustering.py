@@ -8,8 +8,6 @@ from sklearn.preprocessing import StandardScaler
 from scipy.spatial.distance import cdist
 import time
 
-# https://medium.datadriveninvestor.com/outlier-detection-with-k-means-clustering-in-python-ee3ac1826fb0
-
 # Load the data
 team_fights = pd.read_csv("7_27_data.csv")
 X = team_fights[['fightDuration']]
@@ -27,7 +25,6 @@ km = KMeans(n_clusters=3, max_iter=1000, n_init=10, random_state=4231)
 # kmeansoutput = km.fit(data_std)
 kmeansoutput = km.fit_predict(data_std)
 
-# Attempts
 # Get centres of clusters
 start = time.process_time()
 time_taken = time.time()
@@ -52,6 +49,7 @@ fig = plt.figure()  # plotting initial data
 
 
 #### Do the same for test data
+##Measuring time to process test data
 ##start = time.process_time()
 ##time_taken = time.time()
 ##time_again = time.perf_counter()
@@ -76,16 +74,15 @@ fig = plt.figure()  # plotting initial data
 ##    distances = np.append(distances, cdist([center_elem],data_std2[test_result == i], 'euclidean')) 
 ##    points = np.append(points, data_std2[test_result == i], axis=0)
 ##    
-##percentile = 96
+##percentile = 97
 ##outliers = points[np.where(distances > np.percentile(distances, percentile))]
 
-
-
+# Print time taken through the various means
 print(time.process_time() - start)
 print(time.time() - time_taken)
 print(time.perf_counter() - time_again)
-# Gets data for the test data's anomalies
 
+# Gets data for the test data's anomalies
 # full_data = np.append(data_std, data_std2, axis=0)
 
 

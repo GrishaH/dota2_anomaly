@@ -5,6 +5,7 @@ from sklearn import metrics
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import RobustScaler
 from sklearn import preprocessing
+import matplotlib.pyplot as plt
 
 
 team_fights = pd.read_csv("7_27_data.csv")
@@ -14,7 +15,6 @@ Y_val = team_fights[['participants']]
 total = np.column_stack((X_val, Y_val))
 scaler = StandardScaler()
 data_std = scaler.fit_transform(total)
-print("A")
 
 
 # total = preprocessing.scale(total)
@@ -34,12 +34,10 @@ print('Estimated number of noise points: %d' % n_noise_)
 
 
 # Plot result
-import matplotlib.pyplot as plt
 
 unique_labels = set(labels)
 colors = [plt.cm.Spectral(each)
           for each in np.linspace(0, 1, len(unique_labels))]
-print("B")
 for k, col in zip(unique_labels, colors):
     if k == -1:
         # Black used for noise.
@@ -54,8 +52,6 @@ for k, col in zip(unique_labels, colors):
     xy = scaler.inverse_transform(data_std[class_member_mask & ~core_samples_mask])
     plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=tuple(col),
              markeredgecolor='k', markersize=6)
-
-print("C")
 
 plt.title('Estimated number of clusters: %d' % n_clusters_)
 plt.xlabel('Teamfight Duration (Seconds)')

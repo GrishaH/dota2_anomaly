@@ -73,6 +73,7 @@ for file in os.listdir(base_dir):
             # reset progress if fight didn't update in given time
             if (tempHeroList and (val["Entities"]["0000000000"]["CLOCK_TIME"]
                                   - recentFrame >= downTime)):
+                # Downtime limit passed. Store data if it counted as a fight. Clear values.
                 if trigger:
                     # teamFights[str(datetime.timedelta(seconds=round(startFrame)))] =
                     # str(datetime.timedelta(seconds=round(recentFrame)))
@@ -92,6 +93,7 @@ for file in os.listdir(base_dir):
                 tfXPOS = None
                 tfYPOS = None
             if val["Entities"]:
+                # Keeping track of players/ Hero entities and if they are alive.
                 # deathCount = [x - 1 for x in deathCount if x > 0]
                 for entity in val["Entities"]:
                     if val["Entities"][entity]["ENTITY_TYPE"] == "HeroEntity":
@@ -115,7 +117,6 @@ for file in os.listdir(base_dir):
                     
             if val["Events"]:
                 for event in val["Events"]:
-                                    
                     if val["Events"][event]["EventType"] == "DamageDealtEvent":
                         #  print("ON FRAME: " + str(ind))
                         #  print("HERO: " + HEROID[val["Events"][event]["Source"]] +
@@ -159,8 +160,10 @@ for file in os.listdir(base_dir):
 
                             if tempCountRadiant >= desiredCount and tempCountDire >= desiredCount:
                                 # print("TEAMFIGHT TRIGGERED, TIME: " + str(recentFrame))
+                                # Passed the requirements - start to save data
                                 trigger = True
-                                
+
+    # Clean up values once file is finished
     if trigger:
         teamFights[startFrame] = recentFrame
         #  teamFights[str(datetime.timedelta(seconds=round(startFrame)))] =

@@ -9,8 +9,6 @@ from scipy.spatial.distance import cdist
 import time
 from mpl_toolkits.mplot3d import Axes3D
 
-# https://medium.datadriveninvestor.com/outlier-detection-with-k-means-clustering-in-python-ee3ac1826fb0
-
 # Load the data
 team_fights = pd.read_csv("7_27_data.csv")
 X = team_fights[['fightDuration']]
