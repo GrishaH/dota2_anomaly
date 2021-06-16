@@ -13,6 +13,8 @@ Outliers were detected in K-means by measuring the distances of points from thei
 
 The process of detecting anomalies was timed with a large amount of data as to argue for its usability in real-time scenarios, keeping up with live games for the purpose of assisting commentators and audience members.
 
+![Dota 2 Map with teamfight detection ranges](images/teamfight_size.png "Dota 2 Map with teamfight detection ranges")
+
 
 ### TL;DR
 Dota 2 replay data files are parsed into a human-readable file that can then be passed onto various clustering machine learning models, where outlying data is detected and flagged. The idea is that these data points can be potential, fruitful discussion topics for commentators.
@@ -20,6 +22,9 @@ Dota 2 replay data files are parsed into a human-readable file that can then be 
 
 ### Results
 Interesting game events were detected, and a large amount of data was able to be clustered and detected quickly, and so there's a strong argument that this is feasible in real-time. However, the strongest indicator one way or another would be to provide this informations to commentators/casters and audience members, to gauge how interesting or useful the data actually is. Unfortunately, for one reason or another, this was not possible to do in the time-frame of this project.
+
+![3D K-means clustering example](images/3d_kmeans.png "3D K-means clustering example")
+
 
 ### Issues
 - Code should be tidied up and restructured, as it unfortunately fell victim to blind and unplanned feature additions
@@ -30,12 +35,20 @@ Interesting game events were detected, and a large amount of data was able to be
 
 ### Code referenced and used
 Whilst the parser was made from scratch, various sources were used to help me find my footing with clustering.
-Elbow Method - 
+Elbow Method -
+
 `https://bl.ocks.org/rpgove/0060ff3b656618e9136b`
+
 `https://towardsdatascience.com/k-means-clustering-algorithm-applications-evaluation-methods-and-drawbacks-aa03e644b48a`
+
 K-Means Clustering -
+
 `https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_digits.html`
+
 `https://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_iris.html`
+
 `https://medium.datadriveninvestor.com/outlier-detection-with-k-means-clustering-in-python-ee3ac1826fb0`
-DBSCAN - 
+
+DBSCAN -
+
 `https://scikit-learn.org/stable/auto_examples/cluster/plot_dbscan.html`
